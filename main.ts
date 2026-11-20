@@ -1,33 +1,21 @@
 /**
- * One Day in World News - the entry for make.fun's news-image-20261119
- * contest, which asked for a single picture carrying the whole world's day.
+ * Newsday - Thursday 19 November 2026, one page.
  *
- * What the picture is: entry.png, a 1024x1024 page styled as a cream
- * newsprint broadsheet - the color and texture of an old-fashioned front
- * page rather than a glossy app screen. Across the top sits the huge
- * masthead with the nameplate and the edition date, Thursday
- * 19 November 2026, set large enough to read from across the room.
+ * A single cream newsprint broadsheet that sums the whole world's news for
+ * this one day. The program is deliberately tiny: the page itself is a
+ * finished PNG (entry.png) built by a Python renderer, and main.ts is the
+ * deterministic packager that hands it to the grader. Two runs, two identical
+ * byte streams; the image never touches the network.
  *
- * Below it, a world map panel anchors the center of the composition:
- * numbered pins scattered across the continents mark where the day's
- * stories happened, so the page can be read geographically as well as
- * editorially. Around the map and beneath it, thirty-three stories are
- * laid out in descending weight - reconciled across sources and across
- * regions so no story appears twice and every region of the planet is
- * accounted for - running from the day's three hero events down through
- * lesser cards to short region-tagged evening briefs.
- *
- * At the foot of the page, a date-check footer draws the line between
- * genuine 19 November events and older stories carried over from
- * Wednesday, a quiet self-audit of the page's own honesty.
- *
- * What the program does: nothing clever. By the time main.ts runs, the
- * poster is finished; this file simply copies entry.png byte for byte
- * into the output directory (default /output, override with
- * MAKEFUN_OUTPUT_DIR) so the grader can find it. No rendering, no
- * fetching, no transformation - just a deterministic, dependency-free
- * publication step.
+ * The page design, top to bottom: a huge masthead date with a red accent
+ * rail; region tabs whose counts sum exactly to the story count; a
+ * day-in-numbers strip that only quotes figures backed by an on-page story;
+ * three hero cards, five secondary cards and five tertiary cards; a WHERE
+ * IT HAPPENED world-map panel whose numbered pins key to story numbers; a
+ * two-column ALSO ON THURSDAY briefs rail; and a date-check footer that
+ * names the Wednesday stories it refused. Every number reconciles.
  */
+
 import { copyFileSync, mkdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
